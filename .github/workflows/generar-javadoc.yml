@@ -1,0 +1,35 @@
+name: Generar y Publicar Javadoc
+
+on:
+  push:
+    branches:
+      - [cite_start]stable 
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Ejecutar Javadoc
+        [cite_start]run: mvn javadoc:javadoc  
+
+      - name: Subir a GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          [cite_start]path: 'target/site/apidocs'  
+
+      - name: Desplegar Web
+        uses: actions/deploy-pages@v4
