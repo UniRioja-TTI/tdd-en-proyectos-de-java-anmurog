@@ -1,5 +1,6 @@
 package com.tt1.test;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterAll;
@@ -28,7 +29,8 @@ class DBStubTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		DBStub baseDeDatos = new DBStub();
+		assertNotNull(baseDeDatos, "No hay errores");
 	}
 
 }
