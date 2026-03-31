@@ -20,7 +20,7 @@ public class Repositorio implements IRepositorio{
         ToDo todo = db.findToDo(id);
         if (todo != null) {
             todo.setCompletado(true);
-            db.updateToDo(todo); // Actualizamos en la BD
+            db.updateToDo(todo); 
         }
     }
 

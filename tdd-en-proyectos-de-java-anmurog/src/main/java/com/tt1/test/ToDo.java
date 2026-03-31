@@ -9,7 +9,7 @@ public class ToDo {
     private boolean completado;
 
     public ToDo() {
-        // Constructor vacío obligatorio para los JavaBeans
+        
     }
 
     public Integer getId() { return id; }

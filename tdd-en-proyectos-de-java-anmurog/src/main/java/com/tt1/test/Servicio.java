@@ -54,7 +54,6 @@ public class Servicio {
         boolean hayCaducadas = false;
         
         for (ToDo t : todos) {
-            // Si no está completada y su fecha límite es ANTERIOR a hoy
             if (!t.isCompletado() && t.getFechaLimite() != null && t.getFechaLimite().isBefore(LocalDate.now())) {
                 hayCaducadas = true;
                 break;

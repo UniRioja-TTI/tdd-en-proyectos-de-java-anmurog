@@ -6,12 +6,12 @@ public class DBStub implements IDBStub{
     
 	private Map<Integer, ToDo> tablaToDos = new HashMap<>();
     private Set<String> tablaEmails = new HashSet<>();
-    private int idCounter = 1; // Para autogenerar IDs
+    private int idCounter = 1; 
 
     @Override
     public void insertToDo(ToDo todo) {
         if (todo.getId() == null) {
-            todo.setId(idCounter++); // Le asignamos un ID único
+            todo.setId(idCounter++);
         }
         tablaToDos.put(todo.getId(), todo);
     }
