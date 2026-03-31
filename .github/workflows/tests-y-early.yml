@@ -1,0 +1,36 @@
+name: Ejecutar Tests y Actualizar Early
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write # Permiso obligatorio para que el bot pueda escribir en la rama early
+
+jobs:
+  test-and-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fundamental para descargar todas las ramas, no solo main
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Ejecutar Tests con Maven
+        run: mvn test
+
+      - name: Actualizar rama early
+        # Este paso solo se ejecuta si "mvn test" ha terminado con éxito
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git checkout early
+          git merge main
+          git push origin early
